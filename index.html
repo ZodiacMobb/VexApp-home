@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="script-src 'sha256-J96ZyLzsCgauJJ58dlRkreaRBVTxvpUXeRJ5QjvLaOk='; default-src 'none'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; media-src 'self' data: blob:; manifest-src 'self'; worker-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'; frame-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="script-src 'sha256-cEBYa46dMMKHed1bHp8zSZdQvuAQBuytQBMKJGsWN0U='; default-src 'none'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; media-src 'self' data: blob:; manifest-src 'self'; worker-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'; frame-src 'none'">
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>VexApp</title>
@@ -7131,11 +7131,20 @@ if(isStoreEd()){
   VEX_LINES.service=['Sanding old paint? If the house is older than 1978, test for lead first.','Oily rags can catch fire. Lay them flat to dry outside.','Ladder feet level, three points of contact.',
     'Open a window for strong cleaners and solvents.','Gloves on for concrete, mortar and grout.'];
   vexBag=[];
+  /* Color Plan ($25, by email): the paid service on getvexapp.com. A Home tile opens the page in the app's language,
+     and My list can send the list (with the colors to ask for) as the start of a request. */
+  const planPage=()=>{const l=window.VEX_I18N?VEX_I18N.lang:'en'; return l==='es'?'plan-es.html':l==='fr'?'plan-fr.html':'plan.html'};
+  HOME_TILES.unshift(['spark','Color Plan by a paint pro','Send photos, get 3 schemes and the exact paint: $25','#fff4dc','#8a5a00',()=>{location.href=planPage()}]);
+  const renderJob1=renderJob; renderJob=function(){renderJob1(); const L=$('#jobList'); if(!L||$('#planAsk')) return;
+    L.insertAdjacentHTML('afterend','<div class="panel" id="planAsk" style="margin-top:12px"><b>Want a pro to plan the colors?</b><p class="fine" style="margin:4px 0 8px">Send this list and photos of your room. You get 3 color schemes and the exact paint to buy: $25.</p><button type="button" class="btn" id="planAskBtn">Email my list for a Color Plan</button></div>')};
+  document.addEventListener('click',e=>{if(!e.target.closest('#planAskBtn')) return;
+    const body='Hi! I would like a Color Plan.\n\nRoom size, style I like, and what stays:\n\nMy VexApp list:\n'+jobText().slice(0,1500)+'\n\nI attached photos of the room in daylight.\n';
+    location.href='mailto:vexapp.help@gmail.com?subject='+encodeURIComponent('VexApp Color Plan request')+'&body='+encodeURIComponent(body)});
   /* Easy on the eyes (owner, Nov 2): less on screen at once. Vex lives in the header and the boot-up instead of floating
      over content; nothing on Home repeats the bottom bar; rarely used tabs start hidden (Find a feature and Customize
      still reach them); How-to areas get one clear icon each instead of thirteen Vex faces. */
   if(store.get('uxPrefs')==null){UXP.vex=false; PROF.vex=false; store.set('uxPrefs',UXP)}
-  const TORDER=['cube','colors','house','match','wood','sheen'];
+  const TORDER=['spark','cube','colors','house','match','wood','sheen'];
   HOME_TILES.splice(0,HOME_TILES.length,...HOME_TILES.filter(t=>!['calc','dept','list'].includes(t[0])).sort((a,b)=>{const i=k=>{const n=TORDER.indexOf(k[0]); return n<0?99:n}; return i(a)-i(b)}));
   const lay=(g,h)=>{const L=custLay(g); if(!L.h||!L.h.length) L.h=h.slice()};
   if(!(PROF.lay&&PROF.lay.cp)) lay('cp',['tones','all']);
