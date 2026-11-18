@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src 'self' data:; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; connect-src 'self' https://*.trycloudflare.com; style-src 'unsafe-inline'; img-src 'self' data:; base-uri 'none'; form-action 'none'">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Política de privacidad de VexApp</title>
 <style>
@@ -18,10 +18,10 @@ nav a{margin-right:14px}
 <body><main>
 <nav><a href="index.html">Abrir la app</a><a href="privacy-es.html">Privacidad</a><a href="support-es.html">Ayuda</a><a href="licenses-es.html">Créditos</a><a href="privacy.html">English</a><a href="privacy-fr.html">Français</a></nav>
 <h1>Política de privacidad de VexApp</h1>
-<p class="muted">Vigente desde el 2 de noviembre de 2026 · VexApp 1.0.0 de ZoNakama</p>
+<p class="muted">Vigente desde el 17 de noviembre de 2026 · VexApp 1.0.0 de ZoNakama</p>
 <div class="card">
 <h2>En pocas palabras</h2>
-<p>VexApp no recopila, vende ni comparte ninguna información sobre usted. No hay cuentas, anuncios, analíticas ni rastreo. La app funciona sin conexión a internet.</p>
+<p>VexApp no recopila, vende ni comparte ninguna información sobre usted. No hay cuentas, anuncios, analíticas ni rastreo. El sitio web solo cuenta cuántas personas lo visitan cada día (vea abajo). La app funciona sin conexión a internet.</p>
 <h2>Lo que se queda en su teléfono</h2>
 <p>Su lista, los colores guardados, los ajustes de las habitaciones y las preferencias de la app se guardan solo en su dispositivo, en el almacenamiento de la propia app. ZoNakama nunca los recibe. Si borra la app, se borran.</p>
 <h2>Fotos</h2>
@@ -30,6 +30,8 @@ nav a{margin-right:14px}
 <p>Ubicación, contactos, micrófono, identificadores de publicidad ni rastreo entre apps.</p>
 <h2>Correos del Plan de Color</h2>
 <p>Si nos escribe para pedir un Plan de Color, recibimos lo que envíe (su correo, mensaje y fotos) y lo usamos solo para hacer su plan y responderle. Nunca lo vendemos ni lo compartimos. Pídanos borrarlo cuando quiera.</p>
+<h2>Conteo de visitas en getvexapp.com</h2>
+<p>Cuando abre el sitio web, su navegador envía un mensaje vacío que suma 1 al conteo de visitantes de ese día, una vez por día. Ese número es lo único que guardamos. No guardamos su dirección IP, su dispositivo, su ubicación, las páginas que ve ni nada más, y no hay cookies. Su navegador guarda una pequeña nota de "ya contado hoy" que nunca sale de su dispositivo. Las apps del teléfono no cuentan nada. GitHub (que aloja el sitio) y Cloudflare (que nos trae el conteo) manejan la conexión bajo sus propias políticas de privacidad.</p>
 <h2>Enlaces</h2>
 <p>Si abre un enlace a otro sitio web, se aplica la política de privacidad de ese sitio.</p>
 <h2>Niños</h2>
@@ -39,4 +41,5 @@ nav a{margin-right:14px}
 <h2>Contacto</h2>
 <p>Preguntas sobre privacidad: <a href="mailto:vexapp.help@gmail.com">vexapp.help@gmail.com</a></p>
 </div>
-</main></body></html>
+</main><script src="count.js"></script>
+</body></html>
